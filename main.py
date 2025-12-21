@@ -4,8 +4,17 @@ import io
 import torch
 import torch.nn.functional as F
 from transformers import CLIPProcessor, CLIPModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 MODEL_NAME = "openai/clip-vit-base-patch32"
 
